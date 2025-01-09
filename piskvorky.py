@@ -1,10 +1,25 @@
 def vykresli_pole(pole):
+    """
+    Vykreslí herní pole.
+
+    Args:
+        pole (list of list of str): Herní pole jako seznam seznamů řádků.
+    """
     for radek in pole:
         print(' | '.join(radek))
         print('-' * (len(radek) * 4 - 1))
 
 
 def vyhodnot(pole):
+    """
+    Vyhodnotí stav hry.
+
+    Args:
+        pole (list of list of str): Herní pole jako seznam seznamů řádků.
+
+    Returns:
+        str: 'X' pokud vyhrál hráč s 'X', '0' pokud vyhrál hráč s 'O', 'remíza' pokud je remíza, None pokud hra pokračuje .
+    """
     # Kontrola řádků
     for radek in pole:
         if all(policko == 'X' for policko in radek):
@@ -36,6 +51,13 @@ def vyhodnot(pole):
 
 
 def tah_hrace(pole, symbol):
+    """
+    Zpracuje tah hráče.
+
+    Args:
+        pole (list of list of str): Herní pole jako seznam seznamů řádků.
+        symbol (str): Symmbol hráče ('X' nebo 'O').
+    """
     while True:
         try:
             souradnice = input("Zadejte souřadnice ve formátu 'radek,sloupec': ").split(',')
@@ -51,6 +73,13 @@ def tah_hrace(pole, symbol):
 
 
 def tah_pocitace(pole, symbol):
+    """
+    Zpracuje tah počítače.
+
+    Args:
+        pole (list of list of str): Herní pole jako seznam seznamů řádků.
+        symbol (str): Symbol počítače ('X' nebo '0').
+    """
     from random import randint
     while True:
         radek = randint(0, len(pole) - 1)
@@ -61,6 +90,9 @@ def tah_pocitace(pole, symbol):
 
 
 def hra_piskvorek():
+    """
+    Spustí hru piškvorky.
+    """
     velikost_pole = 3
     pole = [['-' for _ in range(velikost_pole)] for _ in range(velikost_pole)]
     symbol_hrace = 'X'
